@@ -94,11 +94,23 @@
     margin: 0 12px;
 }
 
-.date { 
+#date { 
     font-size: 28px;
     margin:0 20px 0 50px;
 }
 
 .calendar {
     clear: both;
+}
+
+/* -------- table ------------ */
+.tbl, .th, .col {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.tbl {
+    border-collapse : collapse;
+    margin : 2%;
+    width : 95%;
 }
