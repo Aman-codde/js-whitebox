@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule webpage</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./schedule.js" type="module" defer></script>
 </head>
 <body>
     <div class="schedular">
@@ -14,14 +15,15 @@
                 <li><a class="round-border-right" href="#">></a></li>
                 <li style="margin-top: 8px;"><span class="day">Today</span></li>
 
-                <li><span class="date">Oct 13-19, 2024</span></li>
+                <li><span id="date"></span></li>
                 
                 <li style="float: right;"><a class="round-border-right" href="#">Month</a></li>
                 <li style="float: right;"><a href="#">Week</a></li>
                 <li style="float: right;"><a class="round-border-left" href="#">Day</a></li>
             </ul>
         </nav>
-        <div class="calendar"></div>
+        <div id="calendar">
+        </div>
     </div>
 </body>
 </html>
