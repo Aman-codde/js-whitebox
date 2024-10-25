@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule webpage</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./schedule.js" type="module" defer></script>
+    <script src="./main.js" defer></script>
 </head>
 <body>
     <div class="schedular">
         <nav class="nav-schedular">
             <ul>
-                <li><a class="round-border-left" href="#"><</a></li>
-                <li><a class="round-border-right" href="#">></a></li>
-                <li style="margin-top: 8px;"><span class="day">Today</span></li>
-
+                <li><a id="round-border-left" href="#">
+                    <i class="fa-solid fa-chevron-left"></i></a>
+                </li>
+                <li><a id="round-border-right" href="#">
+                    <i class="fa-solid fa-chevron-right"></i></a>
+                </li>
+                <li style="margin-top: 8px;"><span class="today">Today</span></li>
                 <li><span id="date"></span></li>
-                
-                <li style="float: right;"><a class="round-border-right" href="#">Month</a></li>
+                <li style="float: right;"><a id="round-border-right" href="#">Month</a></li>
                 <li style="float: right;"><a href="#">Week</a></li>
-                <li style="float: right;"><a class="round-border-left" href="#">Day</a></li>
+                <li style="float: right;"><a id="round-border-left" href="#">Day</a></li>
             </ul>
         </nav>
         <div id="calendar">

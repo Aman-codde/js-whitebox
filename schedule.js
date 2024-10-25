@@ -1,17 +1,13 @@
-import {daysOfWeek, months, daysInMonth, schedule,timeSlot, weekDates, firstAndLastDate} from './data.js';
+import {getDatesOfWeek, schedule,timeSlot, weekDates, firstAndLastDate, events, formatDate, colorBook} from './data.js';
 let calendar_div = document.getElementById('calendar');
 const dateSpan = document.getElementById('date');
+const prevBtn = document.getElementById('round-border-left');
+const nextBtn = document.getElementById('round-border-right');
 
 const todayDate = new Date();
-const currentMonth = todayDate.getMonth();
 const currentYear = todayDate.getFullYear();
-const currentDay = todayDate.getDay();
-// console.log(days[currentDay]);
 
 // display month,date,year
-console.log(months[currentMonth],currentYear,currentDay);
-
-
 dateSpan.textContent = firstAndLastDate +", "+ currentYear;
 
 function convertTo12Hours(time){
@@ -30,17 +26,28 @@ function convertTo12Hours(time){
     return t+v;
 }
 
+let weekDatesList = weekDates;
+
+prevBtn.addEventListener('click', () => {
+    weekDatesList = getDatesOfWeek(-1)
+
+    console.log('...prev clicked',weekDatesList)
+    generateTable(weekDatesList);
+})
+
+nextBtn.addEventListener('click', () => {
+    weekDatesList = getDatesOfWeek(1)
+    console.log('...next clicked',weekDatesList)
+    generateTable(weekDatesList);
+})
 // create dynamic table
-function generateTable(){
+function generateTable(weekDatesList){
+    console.log(weekDatesList,"./././ inside generate list")
     const tbl = document.createElement('table');
     //style
     tbl.classList.add('tbl');
-    
-    let timeSlots = timeSlot;
-    
-    console.log("times:",timeSlots)
     //create week days as table headings 
-    for(let i=0; i<timeSlots.length; i++){        
+    for(let i=0; i<timeSlot.length; i++){        
         const row = document.createElement('tr');
         if(i===0){
             const tblHead = document.createElement('thead');
@@ -55,17 +62,28 @@ function generateTable(){
                     th.textContent = "";
                 }
                 else 
-                    th.textContent = weekDates[j-1];
-                th.classList.add('th');
-                row.appendChild(th);
+                    th.textContent = weekDatesList[j-1];
+                    th.classList.add('th');
+                    row.appendChild(th);
             }
             else {
                 const col = document.createElement('td');
                 if(j ===0){
-                    col.textContent = convertTo12Hours(timeSlots[i-1]);
+                    col.textContent = convertTo12Hours(timeSlot[i-1]);
                 }
                 else {
-                    col.textContent = '';
+                    for(let k=0; k<events.length; k++){
+                        if(events[k].startTime === timeSlot[i-1] && weekDatesList[j-1] === formatDate(events[k].date)){
+                            let rowSpanNum = (parseInt(events[k].endTime)-parseInt(events[k].startTime));
+                            if(rowSpanNum > 1){
+                                col.rowSpan = rowSpanNum;
+                            }
+                            let color = colorBook();
+                            col.style.backgroundColor = '#' + color;
+                            col.innerHTML = events[k].startTime + "-" + events[k].endTime + "<br />" + events[k].event;
+                        }
+                    }
+                    // col.textContent = '';
                 }
                 col.classList.add('col');
                 row.appendChild(col);
@@ -75,5 +93,6 @@ function generateTable(){
     }
     calendar_div.appendChild(tbl);
 }
+document.addEventListener('DOMContentLoaded',() => generateTable(weekDatesList));
 
-generateTable();
+// generateTable(weekDatesList);
