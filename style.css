@@ -73,12 +73,12 @@
     background-color: #151f29;
 }
 
-.round-border-left {
+#round-border-left {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.round-border-right {
+#round-border-right {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -87,7 +87,7 @@
     padding: 8px;
 }
 
-.day {
+.today {
     background-color: gray;
     border-radius: 5px;
     color: white;
@@ -105,12 +105,25 @@
 
 /* -------- table ------------ */
 .tbl, .th, .col {
-    border: 1px solid black;
-    text-align: center;
+    border: 1px solid lightgray;
+    /* text-align: center; */
 }
 
 .tbl {
     border-collapse : collapse;
     margin : 2%;
     width : 95%;
+}
+.tbl th {
+    text-align: center;
+}
+
+.tbl td{
+    /* padding: 0px 20px; */
+    text-align: left;
+}
+
+.tbl tr {
+    height: 50px;
+    text-align: center;
 }
